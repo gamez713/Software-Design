@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+<head>
+	<title>Fuel Quote Form</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+	
+	<meta property="og:type" content="website">
+    <meta property="og:site_name" content="Software Design Project Group 29">
+	<meta property="og:title" content="Fuel Quote Form">
+	<meta property="og:description" content="">
+	<meta property="og:image" content="https://imgur.com/ywRGTMU">
+</head>
+
+<body>
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow fixed-top mb-5">
+		<div class="container-fluid">
+			<a class="navbar-brand" href="main-hub.html">Group 29</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+
+			<div class="collapse navbar-collapse" id="navbarNav">
+				<ul class="navbar-nav">
+					<li class="nav-item active">
+						<a class="nav-link" href="main-hub.html">Home</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="fuel-quote-form.html">New Fuel Quote</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="fuel-quote-history.html">Fuel Quote History</a>
+					</li>
+				</ul>
+				<ul class="navbar-nav ms-auto">
+					<li class="nav-item">
+						<a class="nav-link" href="profile-management.html">Your Profile</a>
+					</li>
+				</u1>
+			</div>
+		</div>
+    </nav> 
+	
+	<section class="my-5"><br><br>
+
+	<div class="container-lg text-center px-5">
+		<h1>Fuel Quote Form</h1><br>
+		<form>
+			<div class="mx-auto" style="width:400px;">
+				<label for="gallons" class="form-label">Gallons Requested</label>
+				<input type="number" class="form-control" id="gallons" placeholder="Enter gallons requested" required><br>
+				
+				<laber for="address">Delivery Address 1</label>
+				<input type="text" readonly class="form-control" id="address1" value=" "><br>
+				
+				<laber for="address">Delivery Address 2</label>
+				<input type="text" readonly class="form-control" id="address2" value=" "><br>
+				
+				<label for="date">Delivery Date</label>
+				<input type="date" class="form-control" id="deliveryDate" min="{{date | date:'MM/dd/yyyy'}}" required><br>
+				
+				<button type="button" class="btn btn-dark" id="getQuote">Get Quote</button><br><br>
+				
+				<label for="pricePerGal">Suggested Price / Gallon</label>
+				<div class="input-group mb-3">
+					<input type="number" readonly class="form-control" id="pricePerGallon" value="">
+				</div><br>
+				
+				<label for="totalPrice">Total Price</label>
+				<div class="input-group mb-3">
+					<input type="number" readonly class="form-control" id="totalPrice" value="">
+				</div><br>
+			</div>
+			
+			<button type="button" class="btn btn-dark" id="submitQuote">Submit</button>
+			<p id="result"></p>
+		</form>
+	</div>
+
+	<hr />
+		
+	<script>
+		//recieve address from database
+		var date = document.getElementById('deliveryDate');
+		
+		const getQuoteButton = document.getElementById('getQuote');
+		function get() {
+			document.getElementById('pricePerGallon').value = 2; //temp val, calc by calling price module later on
+			var pricePerGal = document.getElementById('pricePerGallon').value; 
+			var gal = document.getElementById('gallons').value;
+			document.getElementById('totalPrice').value = gal * pricePerGal;
+		}
+		
+		const submitQuoteButton = document.getElementById('submitQuote');
+		function submit() {
+			document.getElementById('result').innerHTML = "Success!";
+			//save form to database
+		}
+		
+		getQuoteButton.addEventListener('click', get);
+		submitQuoteButton.addEventListener('click', submit);
+		
+	</script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+
+</body>
+    
+</html>
